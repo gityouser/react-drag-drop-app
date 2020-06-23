@@ -1,13 +1,13 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
 
   output: {
-    path: path.join(__dirname, '/dist'),
-    filename: 'bundled_index.js',
+    path: path.join(__dirname, "/dist"),
+    filename: "bundled_index.js",
   },
 
   module: {
@@ -17,32 +17,32 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
           },
         ],
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
   ],
 
   resolve: {
     alias: {
-      Components: path.resolve(__dirname, 'src/components/'),
-      Data: path.resolve(__dirname, './src/data/'),
-      Constants: path.resolve(__dirname, './src/utils/constants/'),
+      Components: path.resolve(__dirname, "src/components/"),
+      Data: path.resolve(__dirname, "./src/data/"),
+      Constants: path.resolve(__dirname, "./src/utils/constants/"),
     },
   },
-}
+};
