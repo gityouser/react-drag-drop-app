@@ -1,14 +1,14 @@
-import React from 'react'
-import { Grid, Paper } from '@material-ui/core'
+import React from "react";
+import { Grid } from "@material-ui/core";
 
 function GridItem({ materialGridProps, innerText, classNames, ...props }) {
-  const gridProps = { ...materialGridProps, ...props }
-
   return (
-    <Grid item {...gridProps}>
-      <div className={classNames.join(' ')}>{innerText}</div>
+    <Grid item {...materialGridProps}>
+      <div className={classNames.join(" ")} {...props}>
+        {innerText}
+      </div>
     </Grid>
-  )
+  );
 }
 
-export default GridItem
+export default GridItem;

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -14,6 +15,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 import { availableComponentsIds, availableComponentsData } from "Data";
 import { appDrawerComponentSpecificProps } from "Constants/";
+import { addComponentData } from "Store/actions";
 
 const drawerWidth = 240;
 
@@ -69,9 +71,12 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  toolbar: {
+    ...theme.mixins.toolbar,
+  },
 }));
 
-function AppDrawer({ children }) {
+function AppDrawer({ children, addComponentData }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -93,7 +98,7 @@ function AppDrawer({ children }) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar className="toolbar">
+        <Toolbar className={classes.toolbar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -126,23 +131,7 @@ function AppDrawer({ children }) {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {availableComponentsIds.map((id) => {
-            const { innerText, componentType } = availableComponentsData[id];
-
-            return (
-              <div
-                draggable
-                key={id}
-                className={appDrawerComponentSpecificProps[
-                  componentType
-                ].classNames.join(" ")}
-              >
-                <span>{innerText}</span>
-              </div>
-            );
-          })}
-        </List>
+        {renderAvailableComponents({ addComponentData })}
         <Divider />
       </Drawer>
       <main
@@ -157,4 +146,34 @@ function AppDrawer({ children }) {
   );
 }
 
-export default AppDrawer;
+/**
+ * Render the components available to be dragged into the configuration screen area
+ */
+function renderAvailableComponents({ addComponentData }) {
+  return (
+    <List>
+      {availableComponentsIds.map((id) => {
+        const { innerText, componentType, allowSwap } = availableComponentsData[
+          id
+        ];
+
+        return (
+          <div
+            draggable
+            onDragStart={() =>
+              addComponentData({ innerText, componentType, allowSwap })
+            }
+            key={id}
+            className={appDrawerComponentSpecificProps[
+              componentType
+            ].classNames.join(" ")}
+          >
+            <span>{innerText}</span>
+          </div>
+        );
+      })}
+    </List>
+  );
+}
+
+export default connect(null, { addComponentData })(AppDrawer);

@@ -1,10 +1,17 @@
+// below config should assist the editor/IDE* in resolving
+// the absolute paths intellisense and autosuggestions in current project
+// *developed on VS Code
 {
   "compilerOptions": {
+    "target": "ES6",
     "baseUrl": ".",
     "paths": {
-      "Components/*": ["src/components/*"],
+      "Components/*": ["./src/components/*"],
       "Data/*": ["./src/data/*"],
-      "Constants/*": ["./src/utils/constants/*"]
+      "Constants/*": ["./src/utils/constants/*"],
+      "Functions/*": ["./src/utils/functions/*"],
+      "Actions/*": ["./src/store/actions/*"],
+      "Store/*": ["./src/store/*"]
     }
   },
   "exclude": ["node_modules"]
