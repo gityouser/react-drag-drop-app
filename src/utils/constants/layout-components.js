@@ -21,61 +21,108 @@ const defaultMaterialGridProps = {
   fullWidth: { xs: 12, sm: 12, md: 12, lg: 12 },
 };
 
+export function pass() {
+  return {
+    ala: "bala",
+    porto: "cala",
+  };
+}
+
+export const layoutComponentClasses = {
+  gridItem: "grid_item",
+  layoutComponent: "layout_component",
+  headerLight: "header_light",
+  headerDark: "header_dark",
+  footerLight: "footer_light",
+  footerDark: "footer_dark",
+  yellowContent: "yellow_content",
+  greyContent: "grey_content",
+  redContent: "red_content",
+  brownContent: "brown_content",
+  purpleContent: "purple_content",
+  magentaContent: "magenta_content",
+  blueContent: "blue_content",
+  pinkContent: "pink_content",
+  greenContent: "green_content",
+  orangeContent: "orange_content",
+  dropAvailable: "drop-available",
+  dropUnavailable: "drop-unavailable",
+};
+
+const {
+  gridItem,
+  layoutComponent,
+  headerLight,
+  headerDark,
+  footerLight,
+  footerDark,
+  yellowContent,
+  greyContent,
+  redContent,
+  brownContent,
+  purpleContent,
+  magentaContent,
+  blueContent,
+  pinkContent,
+  greenContent,
+  orangeContent,
+} = layoutComponentClasses;
+
 export const layoutComponentSpecificProps = {
   [layoutComponentTypes.lightHeader]: {
     materialGridProps: defaultMaterialGridProps.fullWidth,
-    classNames: ["grid_item", "header_light", "layout_component"],
+    classNames: [gridItem, headerLight, layoutComponent],
   },
   [layoutComponentTypes.darkHeader]: {
     materialGridProps: defaultMaterialGridProps.fullWidth,
-    classNames: ["grid_item", "header_dark", "layout_component"],
+    classNames: [gridItem, headerDark, layoutComponent],
   },
   [layoutComponentTypes.lightFooter]: {
     materialGridProps: defaultMaterialGridProps.fullWidth,
-    classNames: ["grid_item", "footer_light", "layout_component"],
+    classNames: [gridItem, footerLight, layoutComponent],
   },
   [layoutComponentTypes.darkFooter]: {
     materialGridProps: defaultMaterialGridProps.fullWidth,
-    classNames: ["grid_item", "footer_dark", "layout_component"],
+    classNames: [gridItem, footerDark, layoutComponent],
   },
   [layoutComponentTypes.yellowContent]: {
     materialGridProps: defaultMaterialGridProps.regularContent,
-    classNames: ["grid_item", "yellow_content", "layout_component"],
+    classNames: [gridItem, yellowContent, layoutComponent],
   },
   [layoutComponentTypes.greyContent]: {
     materialGridProps: defaultMaterialGridProps.wideContent,
-    classNames: ["grid_item", "grey_content", "layout_component"],
+    classNames: [gridItem, greyContent, layoutComponent],
   },
   [layoutComponentTypes.redContent]: {
     materialGridProps: defaultMaterialGridProps.wideContent,
-    classNames: ["grid_item", "red_content", "layout_component"],
+    classNames: [gridItem, redContent, layoutComponent],
   },
   [layoutComponentTypes.brownContent]: {
     materialGridProps: defaultMaterialGridProps.wideContent,
-    classNames: ["grid_item", "brown_content", "layout_component"],
+    classNames: [gridItem, brownContent, layoutComponent],
   },
   [layoutComponentTypes.purpleContent]: {
     materialGridProps: defaultMaterialGridProps.regularContent,
-    classNames: ["grid_item", "purple_content", "layout_component"],
+    classNames: [gridItem, purpleContent, layoutComponent],
   },
   [layoutComponentTypes.magentaContent]: {
     materialGridProps: defaultMaterialGridProps.wideContent,
-    classNames: ["grid_item", "magenta_content", "layout_component"],
+    classNames: [gridItem, magentaContent, layoutComponent],
   },
   [layoutComponentTypes.blueContent]: {
     materialGridProps: defaultMaterialGridProps.regularContent,
-    classNames: ["grid_item", "blue_content", "layout_component"],
+    classNames: [gridItem, blueContent, layoutComponent],
   },
   [layoutComponentTypes.pinkContent]: {
     materialGridProps: defaultMaterialGridProps.regularContent,
-    classNames: ["grid_item", "pink_content", "layout_component"],
+    classNames: [gridItem, pinkContent, layoutComponent],
   },
   [layoutComponentTypes.greenContent]: {
     materialGridProps: defaultMaterialGridProps.regularContent,
-    classNames: ["grid_item", "green_content", "layout_component"],
+    classNames: [gridItem, greenContent, layoutComponent],
   },
   [layoutComponentTypes.orangeContent]: {
     materialGridProps: defaultMaterialGridProps.regularContent,
-    classNames: ["grid_item", "orange_content", "layout_component"],
+    classNames: [gridItem, orangeContent, layoutComponent],
   },
 };

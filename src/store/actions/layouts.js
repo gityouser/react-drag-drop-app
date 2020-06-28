@@ -1,22 +1,25 @@
 import { layoutsScreenActionTypes } from "Constants/action-types";
 
-export function addLayoutsData({}) {
+export function addLayoutData(data) {
   return {
-    type: layoutsScreenActionTypes.addLayoutsData,
+    type: layoutsScreenActionTypes.addLayoutData,
+    data,
   };
 }
-export function updateLayoutsData({}) {
+export function updateLayoutData(data) {
   return {
-    type: layoutsScreenActionTypes.updateLayoutsData,
+    type: layoutsScreenActionTypes.updateLayoutData,
+    data,
   };
 }
-export function removeLayoutsData({}) {
+export function removeLayoutData({ removeCriteria }) {
   return {
-    type: layoutsScreenActionTypes.removeLayoutsData,
+    type: layoutsScreenActionTypes.removeLayoutData,
+    data: { removeCriteria },
   };
 }
-export function removeAllData({}) {
+export function updateAllLayoutData({}) {
   return {
-    type: layoutsScreenActionTypes.removeAllData,
+    type: layoutsScreenActionTypes.updateAllLayoutData,
   };
 }

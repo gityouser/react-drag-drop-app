@@ -1,6 +1,7 @@
 @import "../src/components/ConfigurationScreen/ConfigurationScreen.scss";
-@import "../src/components/ConfigurationScreen/GridItem/GridItem.scss";
-@import "Components/AppDrawer/AppDrawer.scss";
+@import "../src/components/LayoutsScreen/LayoutsScreen.scss";
+@import "../src/components/Shared/GridItem/GridItem.scss";
+@import "../src/components/AppDrawer/AppDrawer.scss";
 
 // CSS Variables
 :root {
@@ -12,9 +13,9 @@
   --yellow: #ffcc5c;
   --red: #c94c4c;
   --purple: #4040a1;
-  --blue: #87bdd8;
+  --blue: #f3e2c6;
   --green: #588c7e;
-
+  --beige: #fef8dd;
   --grey: #e0e2e4;
   --brown: #674d3c;
   --magenta: #622569;
@@ -23,5 +24,16 @@
 }
 
 body {
+  font-family: "B612", sans-serif;
   background-color: var(--bg-color);
+}
+
+* {
+  box-sizing: border-box;
+  a {
+    color: #fff;
+    &:hover {
+      color: #efc88b;
+    }
+  }
 }

@@ -1,33 +1,51 @@
 import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
+import CancelIcon from "@material-ui/icons/Cancel";
 
-import GridItem from "./GridItem";
-import AppDrawer from "Components/AppDrawer";
-import { layoutComponentSpecificProps } from "Utils/constants";
-import { swapArrayElements } from "Utils/functions";
-import { sortComponentIds } from "Store/actions";
+import GridItem from "../Shared/GridItem";
+import {
+  swapArrayElements,
+  handleDragAndDropStyleChange,
+} from "Utils/functions";
+import { layoutComponentClasses } from "Utils/constants";
+import {
+  sortComponentIds,
+  updateComponentData,
+  removeComponentData,
+} from "Store/actions";
 
 function ConfigurationScreen({
   configurationComponentsIds,
   configurationComponentsData,
   sortComponentIds,
+  updateComponentData,
+  removeComponentData,
 }) {
   // bypass all DataTransfer API and manage data transfer state in React
   const [transferredData, setTransferredData] = useState(null);
 
   return (
-    <AppDrawer>
+    <div className="configuration_grid_wrapper">
       <Grid className="configuration_screen_container" container spacing={3}>
-        {renderComponents({
-          configurationComponentsIds,
-          configurationComponentsData,
-          transferredData,
-          setTransferredData,
-          sortComponentIds,
-        })}
+        {configurationComponentsIds.length ? (
+          renderComponents({
+            configurationComponentsIds,
+            configurationComponentsData,
+            transferredData,
+            setTransferredData,
+            sortComponentIds,
+            updateComponentData,
+            removeComponentData,
+          })
+        ) : (
+          <h1>
+            Configure your own layout by dragging the items here! <br></br> You
+            can also swap them around! 😀
+          </h1>
+        )}
       </Grid>
-    </AppDrawer>
+    </div>
   );
 }
 
@@ -37,19 +55,16 @@ function renderComponents({
   transferredData,
   setTransferredData,
   sortComponentIds,
+  updateComponentData,
+  removeComponentData,
 }) {
   return configurationComponentsIds.map((id) => {
-    console.log(
-      "configurationComponentsData[id]",
-      configurationComponentsData[id]
-    );
-    const { innerText, componentType, allowSwap } = configurationComponentsData[
-      id
-    ];
-
-    const { classNames, materialGridProps } = layoutComponentSpecificProps[
-      componentType
-    ];
+    const {
+      innerText,
+      allowSwap,
+      classNames,
+      materialGridProps,
+    } = configurationComponentsData[id];
 
     return (
       <GridItem
@@ -57,36 +72,74 @@ function renderComponents({
         onDragStart={() => {
           setTransferredData({ id });
         }}
-        onDragOver={(e) => {
+        onDragOver={(event) => {
           // allow drop
-          e.preventDefault();
+          event.preventDefault();
         }}
-        onDragEnter={(e) => {
-          e.preventDefault();
+        onDragEnter={(event) => {
+          event.preventDefault();
+          updateComponentData({
+            updateCriteria: { componentId: id },
+            classNames: handleDragAndDropStyleChange({
+              classNames,
+              dragStartId: transferredData?.id,
+              dropZoneId: id,
+              allowSwap,
+              event,
+            }),
+          });
         }}
-        onDragLeave={(e) => {
-          e.preventDefault();
+        onDragLeave={(event) => {
+          event.preventDefault();
+          updateComponentData({
+            updateCriteria: { componentId: id },
+            classNames: handleDragAndDropStyleChange({
+              classNames,
+              dragStartId: transferredData?.id,
+              dropZoneId: id,
+              allowSwap,
+              event,
+            }),
+          });
         }}
-        onDrop={(e) => {
-          e.preventDefault();
+        onDrop={(event) => {
+          event.preventDefault();
+          updateComponentData({
+            updateCriteria: { componentId: id },
+            classNames: handleDragAndDropStyleChange({
+              classNames,
+              dragStartId: transferredData?.id,
+              dropZoneId: id,
+              allowSwap,
+              event,
+            }),
+          });
           // The anonymous function passed below to sortComponentIds behaves very similarly to  the *compareFunction*
-          // which native *Array.prototype.sort* method takes, the main difference here being that *swapArrayElements* is not
+          // which native *Array.prototype.sort* method takes; the main difference here being that *swapArrayElements* is not
           // chained to the prototype, so the array it handles has to be passed as (first) argument
-          console.log("allowSwap:", allowSwap);
           if (allowSwap) {
             sortComponentIds(({ configurationComponentsIds }) =>
               swapArrayElements(configurationComponentsIds, [
-                id,
-                transferredData?.id,
+                id, // id of the component it's dropped on (dropZoneId)
+                transferredData?.id, // id of the component that's being dragged (dragStartId)
               ])
             );
           }
         }}
         key={id}
         materialGridProps={materialGridProps}
-        innerText={innerText}
         classNames={[...classNames]}
-      />
+      >
+        {innerText}
+        <CancelIcon
+          onClick={() =>
+            removeComponentData({
+              removeCriteria: { componentId: id },
+            })
+          }
+          style={{ position: "absolute", top: "5px", right: "5px" }}
+        />
+      </GridItem>
     );
   });
 }
@@ -98,5 +151,5 @@ export default connect(
     configurationComponentsIds,
     configurationComponentsData,
   }),
-  { sortComponentIds }
+  { sortComponentIds, updateComponentData, removeComponentData }
 )(ConfigurationScreen);

@@ -24,7 +24,7 @@ export const testComponentData = {
   },
   5: {
     innerText: "YELLOW",
-    allowSwap: true,
+    allowSwap: false,
     componentType: layoutComponentTypes.yellowContent,
   },
   6: {

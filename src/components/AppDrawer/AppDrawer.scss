@@ -11,6 +11,44 @@
 }
 
 .drawer_header_title {
-  margin-right: 10px !important;
+  margin-right: 10px;
   font-weight: bold;
+}
+
+.component-hover {
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 0.2s;
+  transform: scale(0.9);
+
+  &:hover {
+    transform: scale(1);
+  }
+}
+
+.nav_listitem_text span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.home_main_content {
+  margin-top: 1em;
+  font-size: 3em;
+}
+
+.drawer_toolbar_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .drawer_toolbar_title {
+    font-size: 2em;
+    color: white !important;
+  }
 }

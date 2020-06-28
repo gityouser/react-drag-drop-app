@@ -1,15 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-
-import ConfigurationScreen from "../ConfigurationScreen";
+import AppDrawer from "../AppDrawer";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <ConfigurationScreen />
-    </BrowserRouter>
-  );
+  return <AppDrawer />;
 }
 
 export default connect()(App);

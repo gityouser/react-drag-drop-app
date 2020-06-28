@@ -1,0 +1,5 @@
+// double the class name to increase specificity and override
+// material-ui styles. !important should not be used inside the project.
+.layouts_screen_container.layouts_screen_container {
+  margin-top: 3em;
+}

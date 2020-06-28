@@ -20,13 +20,35 @@ export function sortComponentIds(compareFunction) {
   };
 }
 
-export function removeComponentData({}) {
+export function removeComponentData({ removeCriteria }) {
   return {
     type: configurationScreenActionTypes.removeComponentData,
+    data: { removeCriteria },
   };
 }
-export function removeAllData({}) {
+
+/**
+ * Replaces the configuration components state,
+ * in an imperative way.
+ * The values passed in props will completely replace
+ * the same correspondent values in the state.
+ * @param {Object} props
+ * @param {Array} props.configurationComponentsIds
+ * @param {Object} props.configurationComponentsData
+ */
+export function updateAllConfigurationData(props = {}) {
+  const {
+    configurationComponentsIds = [],
+    configurationComponentsData = {},
+    layoutId,
+  } = props;
+
   return {
-    type: configurationScreenActionTypes.removeAllData,
+    type: configurationScreenActionTypes.updateAllConfigurationData,
+    data: {
+      configurationComponentsIds: [...configurationComponentsIds],
+      configurationComponentsData: { ...configurationComponentsData },
+      layoutId,
+    },
   };
 }
