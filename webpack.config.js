@@ -43,6 +43,8 @@ module.exports = {
       Components: path.resolve(__dirname, "src/components/"),
       Data: path.resolve(__dirname, "./src/data/"),
       Store: path.resolve(__dirname, "./src/store/"),
+      Actions: path.resolve(__dirname, "./src/store/actions/"),
+      Utils: path.resolve(__dirname, "./src/utils/"),
       Constants: path.resolve(__dirname, "./src/utils/constants/"),
       Functions: path.resolve(__dirname, "./src/utils/functions/"),
     },

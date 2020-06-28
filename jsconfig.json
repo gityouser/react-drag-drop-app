@@ -3,15 +3,18 @@
 // *developed on VS Code
 {
   "compilerOptions": {
-    "target": "ES6",
-    "baseUrl": ".",
+    "module": "es6",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "baseUrl": "./src/",
     "paths": {
-      "Components/*": ["./src/components/*"],
-      "Data/*": ["./src/data/*"],
-      "Constants/*": ["./src/utils/constants/*"],
-      "Functions/*": ["./src/utils/functions/*"],
-      "Actions/*": ["./src/store/actions/*"],
-      "Store/*": ["./src/store/*"]
+      "Components/*": ["./*"],
+      "Data/*": ["./data/*"],
+      "Utils/*": ["./utils/*"],
+      "Actions/*": ["./store/actions/*"],
+      "Store/*": ["./store/*"]
     }
   },
   "exclude": ["node_modules"]

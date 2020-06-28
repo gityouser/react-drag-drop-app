@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 
 import GridItem from "./GridItem";
 import AppDrawer from "Components/AppDrawer";
-import { layoutComponentSpecificProps } from "Constants/";
-import { swapArrayElements } from "Functions";
+import { layoutComponentSpecificProps } from "Utils/constants";
+import { swapArrayElements } from "Utils/functions";
 import { sortComponentIds } from "Store/actions";
 
 function ConfigurationScreen({
@@ -54,7 +54,6 @@ function renderComponents({
     return (
       <GridItem
         draggable
-        allowSwap={allowSwap}
         onDragStart={() => {
           setTransferredData({ id });
         }}
